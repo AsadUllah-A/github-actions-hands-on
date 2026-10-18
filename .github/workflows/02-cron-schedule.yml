@@ -1,0 +1,15 @@
+name: Module 2B - Scheduled Cron Trigger
+
+on:
+  schedule:
+    # Har 5 minute baad chalega
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Direct test karne ke liye manual trigger bhi add kar diya
+
+jobs:
+  cron-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scheduled Task Execution
+        run: |
+          echo "Scheduled Cron Workflow executed successfully at $(date)"
