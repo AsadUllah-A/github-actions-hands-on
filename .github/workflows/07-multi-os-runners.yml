@@ -1,0 +1,38 @@
+name: Module 5A - Multi-OS GitHub-Hosted Runners
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  ubuntu-job:
+    name: Run on Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ubuntu System Info
+        run: |
+          echo "Running on Ubuntu Linux!"
+          lsb_release -a || uname -a
+
+  windows-job:
+    name: Run on Windows
+    runs-on: windows-latest
+    steps:
+      - name: Windows PowerShell & Choco Check
+        shell: powershell
+        run: |
+          Write-Output "Running on Windows Runner!"
+          $PSVersionTable.PSVersion
+          choco --version
+
+  macos-job:
+    name: Run on macOS
+    runs-on: macos-latest
+    steps:
+      - name: macOS System & Swift Check
+        run: |
+          echo "Running on macOS Runner!"
+          sw_vers
+          swift --version
