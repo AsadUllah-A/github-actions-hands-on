@@ -1,0 +1,24 @@
+name: Module 7 - Custom JS Action Execution
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  custom-action-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Execute Custom Local Action
+        id: custom-greet
+        uses: ./.github/../custom-action
+        with:
+          who-to-greet: 'AsadUllah'
+
+      - name: Print Custom Action Output
+        run: |
+          echo "Output from custom action: ${{ steps.custom-greet.outputs.greeting-result }}"

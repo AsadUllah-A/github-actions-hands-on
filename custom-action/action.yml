@@ -1,0 +1,13 @@
+name: 'Custom Greeting Action'
+description: 'A custom GitHub Action compiled with Vercel NCC'
+inputs:
+  who-to-greet:
+    description: 'Who to greet in logs'
+    required: true
+    default: 'Asad'
+outputs:
+  greeting-result:
+    description: 'Resulting greeting output message'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
