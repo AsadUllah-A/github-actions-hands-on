@@ -13,11 +13,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js with Automatic Caching
-        uses: actions/setup-node@v4
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install Dependencies
         run: npm install
