@@ -1,0 +1,41 @@
+name: Module 3 - Context Objects and Conditionals
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  GLOBAL_ENV_VAR: "Global Context Environment Variable"
+
+jobs:
+  context-and-conditional-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Print GitHub and Runner Contexts
+        env:
+          STEP_ENV_VAR: "Step Specific Environment Variable"
+        run: |
+          echo "=== CONTEXT INSPECTION LOGS ==="
+          echo "GitHub Actor: ${{ github.actor }}"
+          echo "Event Name: ${{ github.event_name }}"
+          echo "Runner OS: ${{ runner.os }}"
+          echo "Repository Name: ${{ github.repository }}"
+          echo "Global Env Var: ${{ env.GLOBAL_ENV_VAR }}"
+          echo "Step Env Var: ${{ env.STEP_ENV_VAR }}"
+
+      - name: Always Executed Step
+        if: always()
+        run: echo "This step always executes using always() conditional expression."
+
+      - name: Conditional Execution Based on Runner OS
+        if: runner.os == 'Linux' && contains(github.ref, 'main')
+        run: echo "Conditional evaluation passed! Running on Linux and main branch."
+
+      - name: Success Conditional Step
+        if: success()
+        run: echo "Previous steps succeeded!"
