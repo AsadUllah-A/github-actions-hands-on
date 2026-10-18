@@ -1,0 +1,14 @@
+name: Module 2D - Repository Dispatch Trigger
+
+on:
+  repository_dispatch:
+    types: [custom-webhook]
+
+jobs:
+  dispatch-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Acknowledge External Webhook
+        run: |
+          echo "Repository dispatch event received successfully!"
+          echo "Payload message: ${{ github.event.client_payload.message }}"
