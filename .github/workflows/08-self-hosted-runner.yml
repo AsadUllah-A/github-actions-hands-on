@@ -1,0 +1,19 @@
+name: Module 5B - Self-Hosted Runner Execution
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  self-hosted-job:
+    name: Run on Local Self-Hosted Runner
+    runs-on: self-hosted
+    steps:
+      - name: Verify Execution on Self-Hosted Machine
+        shell: powershell
+        run: |
+          Write-Output "Successfully executed on local Self-Hosted Runner!"
+          Write-Output "Host Machine Name: $env:COMPUTERNAME"
+          
