@@ -1,0 +1,9 @@
+{
+  "name": "github-actions-caching-demo",
+  "version": "1.0.0",
+  "description": "Cache test",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
