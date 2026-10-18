@@ -1,0 +1,26 @@
+name: Module 2C - Manual Dispatch Trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'User Name'
+        required: true
+        default: 'Asad'
+      greeting:
+        description: 'Greeting Message'
+        required: true
+        default: 'Hello'
+      data:
+        description: 'Additional Info'
+        required: false
+        default: 'Verification Test'
+
+jobs:
+  manual-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Custom Inputs
+        run: |
+          echo "${{ inputs.greeting }}, ${{ inputs.name }}!"
+          echo "Data Input: ${{ inputs.data }}"
