@@ -1,0 +1,23 @@
+name: Module 2A - Push and Pull Request Triggers
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Log Trigger Event
+        run: |
+          echo "Workflow triggered by event: ${{ github.event_name }}"
+          echo "Target branch: ${{ github.ref_name }}"
